@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [quote, setQuote] = useState([])
+  const [button, setButton] = useState(true)
+  const [copy, setCopy] = useState(true)
+
+  useEffect(() => {
+    refresh();
+  }, []);
+
+  const textToSpeech = () => {
+    window.speechSynthesis.cancel();
+    const tts = new SpeechSynthesisUtterance();
+    tts.text = quote?.content;
+    tts.lang = 'en-US';
+    window.speechSynthesis.speak(tts);
+  }
+
+  const refresh = () => {
+    setButton(false);
+    fetch('https://api.quotable.io/random')
+    .then(res => res.json())
+    .then(
+      (result) => {
+        setQuote(result);
+        setButton(true);
+        setCopy(true);
+        console.log(result);
+      },
+      (error) => {
+        setButton(true);
+        setCopy(true);
+        console.log(error);
+      }
+    )
+  }
+
+  return (<>
+    <div className='quote'>
+      <p className={button ? 'text animation' : 'text'}>{quote.content}</p>
+      <i className={button ? 'author animation' : 'author'}>{quote.author}</i><br/>
+      <button onClick={() => textToSpeech()} disabled={!button}>Audio</button>
+      <button onClick={() => {navigator.clipboard.writeText(quote.content); setCopy(false)}} 
+      className={copy ? '' : 'copied'} disabled={!button || !copy}>{copy ? 'Copy' : 'Copied'}</button>
+      <button onClick={() => refresh()} disabled={!button}>Refresh</button>
     </div>
-  );
+  </>);
 }
 
 export default App;
