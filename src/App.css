@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 body {
   margin: 0;
@@ -13,17 +13,22 @@ body {
 
 .quote {
   max-width: 700px;
-  text-align: center;
-  padding: 1px 19px;
+  padding: 15px;
   color: #eae2b6;
+  box-sizing: border-box;
 }
 
 .text {
   font-size: 1.5em;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .author {
-  font-size: 1.2em;
+  font-size: 1em;
+  text-align: right;
+  font-weight: 700;
+  margin: 25px 0;
 }
 
 .animation {
@@ -31,8 +36,13 @@ body {
   animation-duration: 1s;
 }
 
+.btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
 button {
-  margin: 15px 5px 35px 5px;
   border: none;
   padding: 7px 10px;
   background-color: #cf4147;
@@ -44,10 +54,6 @@ button {
 
 .copied {
   background-color: #91262b;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 @keyframes fade {

@@ -38,12 +38,14 @@ function App() {
 
   return (<>
     <div className='quote'>
-      <p className={button ? 'text animation' : 'text'}>{quote.content}</p>
-      <i className={button ? 'author animation' : 'author'}>{quote.author}</i><br/>
-      <button onClick={() => textToSpeech()} disabled={!button}>Audio</button>
-      <button onClick={() => {navigator.clipboard.writeText(quote.content); setCopy(false)}} 
-      className={copy ? '' : 'copied'} disabled={!button || !copy}>{copy ? 'Copy' : 'Copied'}</button>
-      <button onClick={() => refresh()} disabled={!button}>Refresh</button>
+      <h2 className={button ? 'text animation' : 'text'}>"{quote.content}"</h2>
+      <h1 className={button ? 'author animation' : 'author'}>&#126; {quote.author}</h1>
+      <div className="btn">
+        <button onClick={() => textToSpeech()} disabled={!button}>Audio</button>
+        <button onClick={() => {navigator.clipboard.writeText(quote.content); setCopy(false)}} 
+        className={copy ? '' : 'copied'} disabled={!button || !copy}>{copy ? 'Copy' : 'Copied'}</button>
+        <button onClick={() => refresh()} disabled={!button}>Refresh</button>
+      </div>
     </div>
   </>);
 }
