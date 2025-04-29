@@ -12,7 +12,7 @@ function App() {
   const textToSpeech = () => {
     window.speechSynthesis.cancel();
     const tts = new SpeechSynthesisUtterance();
-    tts.text = quote?.content;
+    tts.text = quote?.quote;
     tts.lang = 'en-US';
     window.speechSynthesis.speak(tts);
   }
