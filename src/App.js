@@ -43,7 +43,7 @@ function App() {
       <h1 className={button ? 'author animation' : 'author'}>&#126; {quote.author}</h1>
       <div className="btn">
         <button onClick={() => textToSpeech()} disabled={!button}>Audio</button>
-        <button onClick={() => {navigator.clipboard.writeText(quote.content); setCopy(false)}} 
+        <button onClick={() => {navigator.clipboard.writeText(quote.quote); setCopy(false)}} 
         className={copy ? '' : 'copied'} disabled={!button || !copy}>{copy ? 'Copy' : 'Copied'}</button>
         <button onClick={() => refresh()} disabled={!button}>Refresh</button>
       </div>
