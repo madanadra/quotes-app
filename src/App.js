@@ -19,14 +19,15 @@ function App() {
 
   const refresh = () => {
     setButton(false);
-    fetch('https://api.quotable.io/random')
+    fetch('https://api.api-ninjas.com/v1/quotes', {
+      headers: {'X-Api-Key': 'nca1Rj17Ka8I1p0+2gM+NQ==rLaQdmWgaiF7BGMA'}
+    })
     .then(res => res.json())
     .then(
       (result) => {
-        setQuote(result);
+        setQuote(result[0]);
         setButton(true);
         setCopy(true);
-        console.log(result);
       },
       (error) => {
         setButton(true);
@@ -38,7 +39,7 @@ function App() {
 
   return (<>
     <div className='quote'>
-      <h2 className={button ? 'text animation' : 'text'}>"{quote.content}"</h2>
+      <h2 className={button ? 'text animation' : 'text'}>"{quote.quote}"</h2>
       <h1 className={button ? 'author animation' : 'author'}>&#126; {quote.author}</h1>
       <div className="btn">
         <button onClick={() => textToSpeech()} disabled={!button}>Audio</button>
